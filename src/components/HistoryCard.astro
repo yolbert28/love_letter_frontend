@@ -1,0 +1,113 @@
+---
+// Componente Astro que registra un Web Component (Custom Element) para las cartas del historial
+---
+<script>
+	class HistoryCard extends HTMLElement {
+		constructor() {
+			super();
+		}
+		
+		connectedCallback() {
+			const date = this.getAttribute('date') || '';
+			const preview = this.getAttribute('preview') || '';
+			const isUnread = this.getAttribute('unread') === 'true';
+
+			this.innerHTML = `
+				<div class="history-card-inner">
+					${isUnread ? '<div class="unread-heart" title="Sin abrir">❤️</div>' : ''}
+					<div class="card-date">${date}</div>
+					<div class="card-preview">${preview}</div>
+				</div>
+			`;
+			
+			// Emitir evento cuando se le da tap
+			this.querySelector('.history-card-inner').addEventListener('click', () => {
+				this.dispatchEvent(new CustomEvent('card-click', { bubbles: true }));
+				
+				// Remover el indicador optimísticamente
+				const heart = this.querySelector('.unread-heart');
+				if (heart) heart.remove();
+			});
+		}
+	}
+
+	// Registrar el componente
+	if (!customElements.get('history-card')) {
+		customElements.define('history-card', HistoryCard);
+	}
+</script>
+
+<style is:global>
+	history-card {
+		display: block;
+		width: 100%;
+		margin-bottom: 12px; /* Separación entre cartas */
+	}
+
+	.history-card-inner {
+		position: relative;
+		padding: 16px;
+		
+		/* Fondo semi transparente con efecto blur */
+		background: rgba(255, 255, 255, 0.1); 
+		backdrop-filter: blur(12px); 
+		-webkit-backdrop-filter: blur(12px);
+		
+		/* Bordes blancos redondeados */
+		border: 1.5px solid rgba(255, 255, 255, 0.85); 
+		border-radius: 16px; 
+		
+		color: #ffffff;
+		cursor: pointer;
+		transition: transform 0.2s ease, background 0.2s ease;
+		box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+	}
+
+	.history-card-inner:active {
+		transform: scale(0.97);
+		background: rgba(255, 255, 255, 0.2);
+	}
+
+	/* Indicador en la esquina superior derecha (Corazón) */
+	.unread-heart {
+		position: absolute;
+		top: 8px;
+		right: 8px;
+		font-size: 16px;
+		line-height: 1;
+		animation: pulse-heart 1.5s infinite;
+		filter: drop-shadow(0 0 5px rgba(255, 64, 129, 0.6));
+		-webkit-user-select: none;
+		user-select: none;
+	}
+
+	@keyframes pulse-heart {
+		0% { transform: scale(0.9); }
+		15% { transform: scale(1.15); }
+		30% { transform: scale(0.9); }
+		45% { transform: scale(1.15); }
+		60%, 100% { transform: scale(0.9); }
+	}
+
+	.card-date {
+		font-family: 'Playfair Display', serif;
+		font-size: 1.15rem;
+		font-weight: 600;
+		color: #d4af37; /* Toque dorado */
+		margin-bottom: 8px;
+		padding-right: 20px; /* Para no chocar con el indicador */
+	}
+
+	.card-preview {
+		font-size: 0.95rem;
+		color: rgba(255, 255, 255, 0.9);
+		
+		/* Máximo 2 líneas */
+		display: -webkit-box;
+		-webkit-line-clamp: 2; 
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		line-height: 1.4;
+	}
+</style>
