@@ -1,6 +1,6 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import HistoryCard from '../components/HistoryCard.astro';
+import Layout from "../layouts/Layout.astro";
+import HistoryCard from "../components/HistoryCard.astro";
 ---
 
 <Layout>
@@ -8,7 +8,16 @@ import HistoryCard from '../components/HistoryCard.astro';
 	<div class="app-wrapper">
 		<!-- Botón del Menú -->
 		<button id="menu-btn" class="menu-btn" aria-label="Abrir menú">
-			<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+			<svg
+				viewBox="0 0 24 24"
+				width="24"
+				height="24"
+				fill="none"
+				stroke="currentColor"
+				stroke-width="2"
+				stroke-linecap="round"
+				stroke-linejoin="round"
+			>
 				<line x1="3" y1="12" x2="21" y2="12"></line>
 				<line x1="3" y1="6" x2="21" y2="6"></line>
 				<line x1="3" y1="18" x2="21" y2="18"></line>
@@ -21,7 +30,16 @@ import HistoryCard from '../components/HistoryCard.astro';
 			<div class="sidebar-header">
 				<h2>Cartas Anteriores</h2>
 				<button id="close-btn" class="close-btn" aria-label="Cerrar menú">
-					<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+					<svg
+						viewBox="0 0 24 24"
+						width="24"
+						height="24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+					>
 						<line x1="18" y1="6" x2="6" y2="18"></line>
 						<line x1="6" y1="6" x2="18" y2="18"></line>
 					</svg>
@@ -39,7 +57,6 @@ import HistoryCard from '../components/HistoryCard.astro';
 			<div class="letter-wrapper">
 				<div id="letter-card-container" class="letter-card-container">
 					<div id="letter-card-inner" class="letter-card-inner">
-						
 						<!-- Frente de la carta (Sobre cerrado) -->
 						<div class="letter-face letter-front">
 							<div class="letter-date-display"></div>
@@ -60,8 +77,30 @@ import HistoryCard from '../components/HistoryCard.astro';
 								</div>
 								<p class="loading-msg">Buscando tu carta...</p>
 							</div>
-						</div>
 
+							<!-- Botón de Like -->
+							<button
+								id="like-btn"
+								class="like-btn"
+								aria-label="Dar like"
+								style="display: none;"
+							>
+								<svg
+									viewBox="0 0 24 24"
+									width="28"
+									height="28"
+									stroke="currentColor"
+									stroke-width="2"
+									fill="none"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+								>
+									<path
+										d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
+									></path>
+								</svg>
+							</button>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -94,8 +133,15 @@ import HistoryCard from '../components/HistoryCard.astro';
 	.app-wrapper::before {
 		content: "";
 		position: absolute;
-		top: 0; left: 0; right: 0; bottom: 0;
-		background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.1) 0%, transparent 60%);
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background: radial-gradient(
+			circle at 50% 50%,
+			rgba(255, 255, 255, 0.1) 0%,
+			transparent 60%
+		);
 		pointer-events: none;
 		z-index: 0;
 	}
@@ -108,8 +154,8 @@ import HistoryCard from '../components/HistoryCard.astro';
 		z-index: 10;
 		background: rgba(255, 255, 255, 0.1);
 		backdrop-filter: blur(10px);
-		border: 1px solid rgba(255,255,255,0.2);
-		color: rgba(255,255,255,0.9);
+		border: 1px solid rgba(255, 255, 255, 0.2);
+		color: rgba(255, 255, 255, 0.9);
 		border-radius: 50%;
 		width: 48px;
 		height: 48px;
@@ -118,7 +164,7 @@ import HistoryCard from '../components/HistoryCard.astro';
 		justify-content: center;
 		cursor: pointer;
 		transition: all 0.3s ease;
-		box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+		box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 		-webkit-tap-highlight-color: transparent;
 	}
 
@@ -130,8 +176,11 @@ import HistoryCard from '../components/HistoryCard.astro';
 	/* Menú Lateral (Sidebar) */
 	.sidebar-overlay {
 		position: fixed;
-		top: 0; left: 0; right: 0; bottom: 0;
-		background: rgba(0,0,0,0.5);
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background: rgba(0, 0, 0, 0.5);
 		backdrop-filter: blur(4px);
 		z-index: 40;
 		opacity: 0;
@@ -155,11 +204,11 @@ import HistoryCard from '../components/HistoryCard.astro';
 		backdrop-filter: blur(15px);
 		-webkit-backdrop-filter: blur(15px);
 		z-index: 50;
-		box-shadow: 5px 0 25px rgba(0,0,0,0.6);
+		box-shadow: 5px 0 25px rgba(0, 0, 0, 0.6);
 		transition: left 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 		display: flex;
 		flex-direction: column;
-		border-right: 1px solid rgba(255,255,255,0.1);
+		border-right: 1px solid rgba(255, 255, 255, 0.1);
 	}
 
 	.sidebar.active {
@@ -171,12 +220,12 @@ import HistoryCard from '../components/HistoryCard.astro';
 		align-items: center;
 		justify-content: space-between;
 		padding: 20px;
-		border-bottom: 1px solid rgba(255,255,255,0.1);
+		border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 	}
 
 	.sidebar-header h2 {
 		color: white;
-		font-family: 'Playfair Display', serif;
+		font-family: "Playfair Display", serif;
 		font-size: 1.2rem;
 		font-weight: 600;
 	}
@@ -204,7 +253,7 @@ import HistoryCard from '../components/HistoryCard.astro';
 
 	.loading-text {
 		color: #ffffff !important;
-		font-family: 'Playfair Display', serif;
+		font-family: "Playfair Display", serif;
 		font-size: 1.1rem;
 		opacity: 0.85;
 		text-align: center;
@@ -259,9 +308,9 @@ import HistoryCard from '../components/HistoryCard.astro';
 		backface-visibility: hidden;
 		-webkit-backface-visibility: hidden;
 		border-radius: 12px;
-		box-shadow: 
-			0 15px 40px rgba(0,0,0,0.6),
-			inset 0 0 0 1px rgba(255,255,255,0.6),
+		box-shadow:
+			0 15px 40px rgba(0, 0, 0, 0.6),
+			inset 0 0 0 1px rgba(255, 255, 255, 0.6),
 			inset 0 0 20px rgba(212, 175, 55, 0.15);
 		background: var(--letter-bg);
 		display: flex;
@@ -281,7 +330,8 @@ import HistoryCard from '../components/HistoryCard.astro';
 	}
 
 	/* Esquinas decorativas para ambas caras */
-	.letter-face::before, .letter-face::after {
+	.letter-face::before,
+	.letter-face::after {
 		content: "";
 		position: absolute;
 		width: 30px;
@@ -292,13 +342,17 @@ import HistoryCard from '../components/HistoryCard.astro';
 	}
 
 	.letter-face::before {
-		top: 15px; left: 15px;
-		border-right: none; border-bottom: none;
+		top: 15px;
+		left: 15px;
+		border-right: none;
+		border-bottom: none;
 	}
 
 	.letter-face::after {
-		bottom: 15px; right: 15px;
-		border-left: none; border-top: none;
+		bottom: 15px;
+		right: 15px;
+		border-left: none;
+		border-top: none;
 	}
 
 	/* Diseño de sobre en el frente */
@@ -312,7 +366,7 @@ import HistoryCard from '../components/HistoryCard.astro';
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		background: rgba(255,255,255,0.3);
+		background: rgba(255, 255, 255, 0.3);
 		opacity: 0.8;
 	}
 
@@ -334,17 +388,17 @@ import HistoryCard from '../components/HistoryCard.astro';
 		background: var(--letter-bg);
 		border-radius: 50%;
 		padding: 4px;
-		box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+		box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 	}
 
 	.front-text {
-		font-family: 'Playfair Display', serif;
+		font-family: "Playfair Display", serif;
 		color: var(--text-color);
 		font-size: 1.6rem;
 		margin-bottom: 8px;
 		text-align: center;
 	}
-	
+
 	.tap-hint {
 		font-size: 0.95rem;
 		opacity: 0.6;
@@ -359,7 +413,7 @@ import HistoryCard from '../components/HistoryCard.astro';
 	}
 
 	.letter-text {
-		font-family: 'Playfair Display', serif;
+		font-family: "Playfair Display", serif;
 		font-size: 1.25rem; /* Ligeramente más pequeño para el ancho móvil */
 		line-height: 1.6;
 		white-space: pre-wrap;
@@ -371,7 +425,7 @@ import HistoryCard from '../components/HistoryCard.astro';
 		position: absolute;
 		top: 15px;
 		right: 15px;
-		font-family: 'Playfair Display', serif;
+		font-family: "Playfair Display", serif;
 		font-size: 0.9rem;
 		color: var(--gold-accent);
 		font-weight: 600;
@@ -406,14 +460,16 @@ import HistoryCard from '../components/HistoryCard.astro';
 	}
 
 	.heart::before {
-		top: -15px; left: 0;
+		top: -15px;
+		left: 0;
 	}
 	.heart::after {
-		left: 15px; top: 0;
+		left: 15px;
+		top: 0;
 	}
 
 	.loading-msg {
-		font-family: 'Playfair Display', serif;
+		font-family: "Playfair Display", serif;
 		color: var(--text-color);
 		opacity: 0.8;
 		font-size: 1.1rem;
@@ -424,32 +480,93 @@ import HistoryCard from '../components/HistoryCard.astro';
 		text-align: center;
 		color: var(--text-color);
 	}
-	
+
 	.empty-state h3 {
-		font-family: 'Playfair Display', serif;
+		font-family: "Playfair Display", serif;
 		font-size: 1.6rem;
 		margin-bottom: 12px;
 		color: #d4af37;
 	}
 
+	/* Botón Like */
+	.like-btn {
+		position: absolute;
+		bottom: 15px;
+		left: 15px;
+		background: none;
+		border: none;
+		color: #e91e63;
+		cursor: pointer;
+		padding: 5px;
+		-webkit-tap-highlight-color: transparent;
+		transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+		z-index: 10;
+	}
+
+	.like-btn:active {
+		transform: scale(0.8);
+	}
+
+	.like-btn.liked svg {
+		fill: #e91e63;
+		stroke: #e91e63;
+		animation: pulseLike 0.4s;
+	}
+
 	/* Animaciones clave */
 	@keyframes float {
-		0%, 100% { transform: translateY(0) rotateX(2deg) rotateY(-1deg); }
-		50% { transform: translateY(-12px) rotateX(-2deg) rotateY(1deg); }
+		0%,
+		100% {
+			transform: translateY(0) rotateX(2deg) rotateY(-1deg);
+		}
+		50% {
+			transform: translateY(-12px) rotateX(-2deg) rotateY(1deg);
+		}
 	}
 
 	@keyframes pulse {
-		0%, 100% { opacity: 0.4; transform: scale(1); }
-		50% { opacity: 0.8; transform: scale(1.05); }
+		0%,
+		100% {
+			opacity: 0.4;
+			transform: scale(1);
+		}
+		50% {
+			opacity: 0.8;
+			transform: scale(1.05);
+		}
 	}
 
 	@keyframes heartbeat {
-		0% { transform: scale(0.8) rotate(-45deg); }
-		5% { transform: scale(0.9) rotate(-45deg); }
-		10% { transform: scale(0.8) rotate(-45deg); }
-		15% { transform: scale(1) rotate(-45deg); }
-		50% { transform: scale(0.8) rotate(-45deg); }
-		100% { transform: scale(0.8) rotate(-45deg); }
+		0% {
+			transform: scale(0.8) rotate(-45deg);
+		}
+		5% {
+			transform: scale(0.9) rotate(-45deg);
+		}
+		10% {
+			transform: scale(0.8) rotate(-45deg);
+		}
+		15% {
+			transform: scale(1) rotate(-45deg);
+		}
+		50% {
+			transform: scale(0.8) rotate(-45deg);
+		}
+		100% {
+			transform: scale(0.8) rotate(-45deg);
+		}
+	}
+
+	@keyframes pulseLike {
+		0% {
+			transform: scale(1);
+		}
+		50% {
+			transform: scale(1.3);
+		}
+		100% {
+			transform: scale(1);
+		}
 	}
 
 	/* Estilos para corazones flotantes dinámicos creados con JS */
@@ -464,39 +581,53 @@ import HistoryCard from '../components/HistoryCard.astro';
 	}
 
 	@keyframes floatUp {
-		0% { transform: translateY(0) scale(0.5) rotate(0deg); opacity: 1; }
-		100% { transform: translateY(-180px) scale(1.8) rotate(25deg); opacity: 0; }
+		0% {
+			transform: translateY(0) scale(0.5) rotate(0deg);
+			opacity: 1;
+		}
+		100% {
+			transform: translateY(-180px) scale(1.8) rotate(25deg);
+			opacity: 0;
+		}
 	}
 </style>
 
 <script>
 	// Configuración de la API
-	const API_BASE = 'https://love-letter-api-1o5t.onrender.com';
-	
+	const API_BASE = "https://love-letter-api-1o5t.onrender.com";
+
 	// Referencias a los elementos del DOM
-	const menuBtn = document.getElementById('menu-btn');
-	const closeBtn = document.getElementById('close-btn');
-	const sidebar = document.getElementById('sidebar');
-	const overlay = document.getElementById('sidebar-overlay');
-	const historyList = document.getElementById('history-list');
-	const letterContainer = document.getElementById('letter-content-container');
-	const cardContainer = document.getElementById('letter-card-container');
-	const cardInner = document.getElementById('letter-card-inner');
+	const menuBtn = document.getElementById("menu-btn");
+	const closeBtn = document.getElementById("close-btn");
+	const sidebar = document.getElementById("sidebar");
+	const overlay = document.getElementById("sidebar-overlay");
+	const historyList = document.getElementById("history-list");
+	const letterContainer = document.getElementById("letter-content-container");
+	const cardContainer = document.getElementById("letter-card-container");
+	const cardInner = document.getElementById("letter-card-inner");
+	const likeBtn = document.getElementById("like-btn");
 
 	// Estado local
 	let letters = [];
-	let currentDisplayedDate = '';
+	let currentDisplayedDate = "";
 	let isFlipped = false;
+	let currentLetterId = null;
 
 	// Utilidades de Fechas
 	const formatDateToAPI = (date) => {
 		const d = new Date(date);
-		return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+		return (
+			d.getFullYear() +
+			"-" +
+			String(d.getMonth() + 1).padStart(2, "0") +
+			"-" +
+			String(d.getDate()).padStart(2, "0")
+		);
 	};
 
 	const formatDisplayDate = (dateString) => {
 		// Extraer la parte de la fecha (YYYY-MM-DD) e ignorar la hora y zona horaria
-		const parts = dateString.split('T')[0].split('-');
+		const parts = dateString.split("T")[0].split("-");
 		if (parts.length >= 3) {
 			return `${parts[2]}/${parts[1]}/${parts[0]}`;
 		}
@@ -509,13 +640,13 @@ import HistoryCard from '../components/HistoryCard.astro';
 
 	// Manejo del Menú
 	const toggleMenu = () => {
-		sidebar.classList.toggle('active');
-		overlay.classList.toggle('active');
+		sidebar.classList.toggle("active");
+		overlay.classList.toggle("active");
 	};
 
-	menuBtn.addEventListener('click', toggleMenu);
-	closeBtn.addEventListener('click', toggleMenu);
-	overlay.addEventListener('click', toggleMenu);
+	menuBtn.addEventListener("click", toggleMenu);
+	closeBtn.addEventListener("click", toggleMenu);
+	overlay.addEventListener("click", toggleMenu);
 
 	// Peticiones a la API
 	const fetchHistory = async () => {
@@ -529,16 +660,22 @@ import HistoryCard from '../components/HistoryCard.astro';
 					renderHistory();
 					return;
 				}
-				throw new Error('Server error');
+				throw new Error("Server error");
 			} catch (error) {
 				if (retries === 0) {
-					console.error('Error fetching history tras múltiples intentos:', error);
-					historyList.innerHTML = '<div class="loading-text">Error al cargar historial.</div>';
+					console.error(
+						"Error fetching history tras múltiples intentos:",
+						error,
+					);
+					historyList.innerHTML =
+						'<div class="loading-text">Error al cargar historial.</div>';
 					return;
 				}
-				console.warn(`Error fetching history. Intentos restantes: ${retries}. Reintentando en 1s...`);
+				console.warn(
+					`Error fetching history. Intentos restantes: ${retries}. Reintentando en 1s...`,
+				);
 				retries--;
-				await new Promise(resolve => setTimeout(resolve, 1000));
+				await new Promise((resolve) => setTimeout(resolve, 1000));
 			}
 		}
 	};
@@ -547,23 +684,23 @@ import HistoryCard from '../components/HistoryCard.astro';
 		// Resetear estado de la carta al cambiar de fecha
 		isFlipped = autoOpen;
 		if (autoOpen) {
-			cardInner.classList.add('flipped');
+			cardInner.classList.add("flipped");
 		} else {
-			cardInner.classList.remove('flipped');
+			cardInner.classList.remove("flipped");
 		}
-		
+
 		currentDisplayedDate = dateStr;
 
 		// Actualizar la fecha siempre en la esquina superior derecha
-		document.querySelectorAll('.letter-date-display').forEach(el => {
+		document.querySelectorAll(".letter-date-display").forEach((el) => {
 			el.textContent = formatDisplayDate(dateStr);
 		});
 
 		// 1. Buscar primero en la memoria si ya descargamos esta carta en el historial
-		const searchDatePart = dateStr.split('T')[0];
-		const cachedLetter = letters.find(l => {
+		const searchDatePart = dateStr.split("T")[0];
+		const cachedLetter = letters.find((l) => {
 			if (!l.show_date) return false;
-			return l.show_date.split('T')[0] === searchDatePart;
+			return l.show_date.split("T")[0] === searchDatePart;
 		});
 
 		if (cachedLetter) {
@@ -573,7 +710,7 @@ import HistoryCard from '../components/HistoryCard.astro';
 
 		// 2. Si no está en memoria, hacer la petición
 		renderLoader();
-		
+
 		let retries = 10;
 		while (retries >= 0) {
 			try {
@@ -586,17 +723,22 @@ import HistoryCard from '../components/HistoryCard.astro';
 					renderNoLetter(dateStr);
 					return;
 				} else {
-					throw new Error('Server error');
+					throw new Error("Server error");
 				}
 			} catch (error) {
 				if (retries === 0) {
-					console.error('Error fetching letter tras múltiples intentos:', error);
+					console.error(
+						"Error fetching letter tras múltiples intentos:",
+						error,
+					);
 					renderError();
 					return;
 				}
-				console.warn(`Error fetching letter. Intentos restantes: ${retries}. Reintentando en 1s...`);
+				console.warn(
+					`Error fetching letter. Intentos restantes: ${retries}. Reintentando en 1s...`,
+				);
 				retries--;
-				await new Promise(resolve => setTimeout(resolve, 1000));
+				await new Promise((resolve) => setTimeout(resolve, 1000));
 			}
 		}
 	};
@@ -604,14 +746,14 @@ import HistoryCard from '../components/HistoryCard.astro';
 	// Interacción (Tap en la carta para girar)
 	const handleTap = async (e) => {
 		if (!currentDisplayedDate) return;
-		
+
 		// Lógica de Giro
 		if (!isFlipped) {
 			isFlipped = true;
-			cardInner.classList.add('flipped');
+			cardInner.classList.add("flipped");
 
 			// Crear varios corazones al abrir
-			for(let i = 0; i < 4; i++) {
+			for (let i = 0; i < 4; i++) {
 				setTimeout(() => {
 					createHeart(e);
 				}, i * 150);
@@ -620,10 +762,9 @@ import HistoryCard from '../components/HistoryCard.astro';
 			// Llamada a la API para incrementar contador en el primer "tap" / "open"
 			try {
 				fetch(`${API_BASE}/letters/tap?date=${currentDisplayedDate}`, {
-					method: 'POST'
-				}).catch(err => console.error('Tap request error:', err));
+					method: "POST",
+				}).catch((err) => console.error("Tap request error:", err));
 			} catch (err) {}
-
 		} else {
 			// Si ya está volteada, tocarla suelta corazones igualmente
 			createHeart(e);
@@ -631,13 +772,13 @@ import HistoryCard from '../components/HistoryCard.astro';
 	};
 
 	const createHeart = (e) => {
-		const heart = document.createElement('div');
-		heart.innerHTML = '❤️';
-		heart.className = 'tap-heart';
-		
+		const heart = document.createElement("div");
+		heart.innerHTML = "❤️";
+		heart.className = "tap-heart";
+
 		let x = window.innerWidth / 2;
 		let y = window.innerHeight / 2;
-		
+
 		if (e && e.clientX) {
 			x = e.clientX;
 			y = e.clientY;
@@ -645,25 +786,61 @@ import HistoryCard from '../components/HistoryCard.astro';
 			x = e.touches[0].clientX;
 			y = e.touches[0].clientY;
 		}
-		
+
 		// Pequeña dispersión aleatoria
 		const offsetX = (Math.random() - 0.5) * 60;
 		const offsetY = (Math.random() - 0.5) * 40;
-		
+
 		heart.style.left = `${x - 14 + offsetX}px`;
 		heart.style.top = `${y - 14 + offsetY}px`;
 		document.body.appendChild(heart);
-		
+
 		setTimeout(() => {
 			heart.remove();
 		}, 1400);
 	};
 
-	cardContainer.addEventListener('click', handleTap);
-	cardContainer.addEventListener('touchstart', handleTap, { passive: true });
+	cardContainer.addEventListener("click", handleTap);
+	cardContainer.addEventListener("touchstart", handleTap, { passive: true });
+
+	if (likeBtn) {
+		likeBtn.addEventListener("click", async (e) => {
+			e.stopPropagation(); // Evita que la carta gire u otra cosa
+
+			if (!currentLetterId) return;
+
+			const likedLetters = JSON.parse(
+				localStorage.getItem("likedLetters") || "[]",
+			);
+
+			// Permitir múltiples likes
+			if (!likedLetters.includes(currentLetterId)) {
+				likedLetters.push(currentLetterId);
+				localStorage.setItem("likedLetters", JSON.stringify(likedLetters));
+			}
+
+			// Reiniciar la animación para que palpite con cada tap
+			likeBtn.classList.remove("liked");
+			void likeBtn.offsetWidth; // Forzar reflow
+			likeBtn.classList.add("liked");
+
+			// Efecto de corazón flotante desde el botón
+			createHeart({ clientX: e.clientX, clientY: e.clientY });
+
+			try {
+				await fetch(`${API_BASE}/letters/like/${currentLetterId}`, {
+					method: "POST",
+				});
+			} catch (err) {
+				console.error("Error al dar like:", err);
+			}
+		});
+	}
 
 	// Funciones de Renderizado
 	const renderLoader = () => {
+		currentLetterId = null;
+		if (likeBtn) likeBtn.style.display = "none";
 		letterContainer.innerHTML = `
 			<div class="loader">
 				<div class="heart"></div>
@@ -673,22 +850,39 @@ import HistoryCard from '../components/HistoryCard.astro';
 	};
 
 	const renderLetter = (letter) => {
+		currentLetterId = letter.id;
 		letterContainer.innerHTML = `
 			<div class="letter-text">${letter.content}</div>
 		`;
+
+		if (likeBtn) {
+			likeBtn.style.display = "block";
+			const likedLetters = JSON.parse(
+				localStorage.getItem("likedLetters") || "[]",
+			);
+			if (likedLetters.includes(letter.id)) {
+				likeBtn.classList.add("liked");
+			} else {
+				likeBtn.classList.remove("liked");
+			}
+		}
 	};
 
 	const renderNoLetter = (dateStr) => {
+		currentLetterId = null;
+		if (likeBtn) likeBtn.style.display = "none";
 		const isToday = dateStr === getTodayString();
 		letterContainer.innerHTML = `
 			<div class="empty-state">
-				<h3>${isToday ? 'Aún no hay carta' : 'Sin carta'}</h3>
-				<p>${isToday ? 'Parece que tu carta de hoy todavía no ha llegado. ¡Vuelve más tardecito!' : 'No se encontró ninguna carta de amor para esta fecha.'}</p>
+				<h3>${isToday ? "Aún no hay carta" : "Sin carta"}</h3>
+				<p>${isToday ? "Parece que tu carta de hoy todavía no ha llegado. ¡Vuelve más tardecito!" : "No se encontró ninguna carta de amor para esta fecha."}</p>
 			</div>
 		`;
 	};
 
 	const renderError = () => {
+		currentLetterId = null;
+		if (likeBtn) likeBtn.style.display = "none";
 		letterContainer.innerHTML = `
 			<div class="empty-state">
 				<h3>Lo sentimos</h3>
@@ -699,44 +893,48 @@ import HistoryCard from '../components/HistoryCard.astro';
 
 	const renderHistory = () => {
 		if (!letters || letters.length === 0) {
-			historyList.innerHTML = '<div class="loading-text">No hay cartas previas.</div>';
+			historyList.innerHTML =
+				'<div class="loading-text">No hay cartas previas.</div>';
 			return;
 		}
 
 		const today = getTodayString();
-		const pastLetters = letters.filter(l => l.show_date < today);
+		const pastLetters = letters.filter((l) => l.show_date < today);
 		pastLetters.sort((a, b) => b.show_date.localeCompare(a.show_date));
 
 		if (pastLetters.length === 0) {
-			historyList.innerHTML = '<div class="loading-text">Aún no hay cartas pasadas.</div>';
+			historyList.innerHTML =
+				'<div class="loading-text" style="color: white;">Aún no hay cartas pasadas.</div>';
 			return;
 		}
 
-		historyList.innerHTML = '';
-		pastLetters.forEach(letter => {
+		historyList.innerHTML = "";
+		pastLetters.forEach((letter) => {
 			const isUnread = !letter.opened_count || letter.opened_count === 0;
 
 			// Usar el nuevo Custom Element que hemos creado
-			const card = document.createElement('history-card');
-			card.setAttribute('date', formatDisplayDate(letter.show_date));
-			card.setAttribute('preview', letter.content);
-			card.setAttribute('unread', isUnread ? 'true' : 'false');
-			
-			card.addEventListener('card-click', () => {
+			const card = document.createElement("history-card");
+			card.setAttribute("date", formatDisplayDate(letter.show_date));
+			card.setAttribute("preview", letter.content);
+			card.setAttribute("unread", isUnread ? "true" : "false");
+
+			card.addEventListener("card-click", () => {
 				fetchLetter(letter.show_date, true); // autoOpen en true, mueve a carta abierta
 				toggleMenu(); // Cerrar menú
-				
+
 				if (isUnread) {
 					letter.opened_count = 1; // optimistically mark as read
 					// El componente visual borra su indicador automáticamente
-					
+
 					// Registrar el tap en la API
 					try {
-						fetch(`${API_BASE}/letters/tap?date=${letter.show_date}`, { method: 'POST' });
-					} catch(e) {}
+						fetch(`${API_BASE}/letters/tap?date=${letter.show_date}`, {
+							method: "POST",
+						});
+					} catch (e) {}
 				}
 			});
-			
+
 			historyList.appendChild(card);
 		});
 	};
