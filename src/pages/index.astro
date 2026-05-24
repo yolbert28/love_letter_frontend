@@ -519,16 +519,27 @@ import HistoryCard from '../components/HistoryCard.astro';
 
 	// Peticiones a la API
 	const fetchHistory = async () => {
-		try {
-			const res = await fetch(`${API_BASE}/letters`);
-			if (res.ok) {
-				const data = await res.json();
-				letters = data || [];
-				renderHistory();
+		let retries = 10;
+		while (retries >= 0) {
+			try {
+				const res = await fetch(`${API_BASE}/letters`);
+				if (res.ok) {
+					const data = await res.json();
+					letters = data || [];
+					renderHistory();
+					return;
+				}
+				throw new Error('Server error');
+			} catch (error) {
+				if (retries === 0) {
+					console.error('Error fetching history tras múltiples intentos:', error);
+					historyList.innerHTML = '<div class="loading-text">Error al cargar historial.</div>';
+					return;
+				}
+				console.warn(`Error fetching history. Intentos restantes: ${retries}. Reintentando en 1s...`);
+				retries--;
+				await new Promise(resolve => setTimeout(resolve, 1000));
 			}
-		} catch (error) {
-			console.error('Error fetching history:', error);
-			historyList.innerHTML = '<li class="loading-text">Error al cargar historial.</li>';
 		}
 	};
 
@@ -562,19 +573,31 @@ import HistoryCard from '../components/HistoryCard.astro';
 
 		// 2. Si no está en memoria, hacer la petición
 		renderLoader();
-		try {
-			const res = await fetch(`${API_BASE}/letters/date?date=${dateStr}`);
-			if (res.ok) {
-				const data = await res.json();
-				renderLetter(data);
-			} else if (res.status === 404) {
-				renderNoLetter(dateStr);
-			} else {
-				throw new Error('Server error');
+		
+		let retries = 10;
+		while (retries >= 0) {
+			try {
+				const res = await fetch(`${API_BASE}/letters/date?date=${dateStr}`);
+				if (res.ok) {
+					const data = await res.json();
+					renderLetter(data);
+					return;
+				} else if (res.status === 404) {
+					renderNoLetter(dateStr);
+					return;
+				} else {
+					throw new Error('Server error');
+				}
+			} catch (error) {
+				if (retries === 0) {
+					console.error('Error fetching letter tras múltiples intentos:', error);
+					renderError();
+					return;
+				}
+				console.warn(`Error fetching letter. Intentos restantes: ${retries}. Reintentando en 1s...`);
+				retries--;
+				await new Promise(resolve => setTimeout(resolve, 1000));
 			}
-		} catch (error) {
-			console.error('Error fetching letter:', error);
-			renderError();
 		}
 	};
 
